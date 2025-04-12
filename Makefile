@@ -1,10 +1,10 @@
 cliente: cliente.c
 	gcc cliente.c -o cliente
-	./cliente.exe
+	./cliente
 
 servidor: servidor.c
 	gcc servidor.c -o servidor
-	./servidor.exe
+	./servidor
 
 clean:
-	rm servidor.exe cliente.exe
+	rm servidor cliente
