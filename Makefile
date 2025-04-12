@@ -3,8 +3,8 @@ cliente: cliente.c
 	./cliente
 
 servidor: servidor.c
-	gcc servidor.c -o servidor
+	gcc servidor.c -o servidor -lpthread
 	./servidor
 
 clean:
-	rm servidor cliente
+	rm servidor cliente sendfifo receivefifo
