@@ -2,14 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <fcntl.h>
 #include <errno.h>
 #include <ctype.h>
+#include <fcntl.h>
 
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#include "banco.h"
 #include "thread.h"
 
 pthread_mutex_t mutex;

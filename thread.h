@@ -5,18 +5,6 @@ typedef struct ThreadNode {
     struct ThreadNode* prox;
 } Thread;
 
-//void AdicionarThread(Thread* inicio, Thread* fim, pthread_t novaThread) {
-//    if (inicio == NULL) {
-//        inicio = malloc(sizeof(Thread));
-//        inicio->thread = novaThread;
-//        fim = inicio;
-//        return;
-//    }
-//    fim->prox = malloc(sizeof(Thread));
-//    fim = fim->prox;
-//    fim->thread = novaThread;
-//}
-
 void AdicionarThread(Thread** inicio, Thread** fim, pthread_t novaThread) {
     Thread* nova = (Thread*) malloc(sizeof(Thread));
     if (nova == NULL) return;
