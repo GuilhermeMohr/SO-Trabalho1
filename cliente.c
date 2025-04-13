@@ -20,6 +20,7 @@ int Fifo(char name[]) {
 int main()
 {
     char input[200];
+    char output[200];
     Fifo("sendfifo");
     Fifo("receivefifo");
 
@@ -33,10 +34,16 @@ int main()
 
         input[strcspn(input, "\n")] = 0;
         
-        int n = strlen(input)+1;
-        if (write(sendFile, &n, sizeof(int)) == -1) { return 1; }
+        int tamanhoEnvio = strlen(input)+1;
+        if (write(sendFile, &tamanhoEnvio, sizeof(int)) == -1) { return 1; }
 
-        if (write(sendFile, input, n) == -1) { return 2; }
+        if (write(sendFile, input, tamanhoEnvio) == -1) { return 2; }
+
+        int tamanhoRecebido;
+        if (read(receiveFile, &tamanhoRecebido, sizeof(int)) == -1) { return 1; }
+    
+        if (read(receiveFile, output, tamanhoRecebido) == -1) { return 2; }
+        printf("%s", output);
     } while(strcmp(input,  "exit"));
 
     close(sendFile);

@@ -32,7 +32,7 @@ void AdicionarThread(Thread** inicio, Thread** fim, pthread_t novaThread) {
         *fim = nova;
     }
 
-    printf("Task crida!\n");
+    printf("Thread criada!\n");
 }
 
 void FinalizarThreads(Thread* inicio, Thread* fim) {
