@@ -438,10 +438,6 @@ int main()
         if (read(sendFile, input, n) == -1) { return 2; }
         if (!strcmp(input, "exit")) { break; }
 
-        for (int i=0; i<strlen(input); i++) {
-            input[i] = tolower(input[i]);
-        }
-
         if (strncmp(input, "select", 6) == 0) {
             pthread_t thread;
             AdicionarThread(&thread_inicial, &thread_final, thread);

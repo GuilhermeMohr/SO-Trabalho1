@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <ctype.h>
 
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -29,10 +30,14 @@ int main()
     int receiveFile = open("receivefifo", O_RDONLY);
 
     do {
-        printf("Insira o comando que deseja executar!\n");
+        printf("\nInsira o comando que deseja executar!\n");
         fgets(input, sizeof(input), stdin);
 
         input[strcspn(input, "\n")] = 0;
+
+        for (int i=0; i<strlen(input); i++) {
+            input[i] = tolower(input[i]);
+        }
         
         int tamanhoEnvio = strlen(input)+1;
         if (write(sendFile, &tamanhoEnvio, sizeof(int)) == -1) { return 1; }
@@ -42,8 +47,12 @@ int main()
         int tamanhoRecebido;
         if (read(receiveFile, &tamanhoRecebido, sizeof(int)) == -1) { return 1; }
     
+        memset(output, 0, sizeof(output));
+
         if (read(receiveFile, output, tamanhoRecebido) == -1) { return 2; }
+
         printf("%s", output);
+
     } while(strcmp(input,  "exit"));
 
     close(sendFile);
